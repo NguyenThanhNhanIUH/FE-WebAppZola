@@ -1,0 +1,150 @@
+/* Container chính */
+.login-container {
+    background-color: #2d3748;
+    width: 450px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Nút quay lại */
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3182ce; 
+    border-radius: 50%;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #e2e8f0; 
+}
+
+.back-button i {
+    color: white; 
+    font-size: 20px; 
+}
+
+/* Tiêu đề ứng dụng */
+.app-title h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: #4299e1;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form */
+.signup-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-title {
+    font-size: 14px;
+    color: #a0aec0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Trường nhập liệu */
+.input-field {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #4a5568;
+    border-radius: 10px;
+    background-color: #1a202c;
+    color: white;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.input-field:focus {
+    border-color: #4299e1;
+    outline: none;
+}
+
+.input-field::placeholder {
+    color: #a0aec0;
+}
+
+/* Container mật khẩu */
+.password-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.password-container .input-field {
+    padding-right: 70px; 
+}
+
+/* Nút hiện/ẩn mật khẩu */
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.show-password:hover {
+    background-color: #2b6cb0;
+}
+
+/* Thông báo lỗi */
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    position: static; 
+}
+
+.password-container .error-message {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    margin-top: 55px;
+}
+
+
+/* Nút đăng ký */
+.signup-button {
+    background-color: #3182ce;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px; 
+}
+
+.signup-button:hover {
+    background-color: #2b6cb0;
+}
