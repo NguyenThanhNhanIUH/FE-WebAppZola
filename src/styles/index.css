@@ -1,8 +1,8 @@
 .card-container {
     background-color: #2d3748;
     color: white;
-    width: 400px; 
-    padding: 25px;
+    width: 400px;
+    padding: 25px 25px; 
     border-radius: 20px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
     display: flex;
@@ -10,6 +10,7 @@
     align-items: center;
     position: relative;
     margin: 0 auto;
+    min-height: 500px; 
 }
 
 .language-selector {
@@ -32,13 +33,16 @@
 .app-title {
     margin-top: 50px;
     margin-bottom: 20px;
+
 }
 
-.app-title h1 {
-    font-size: 120px;
+
+.card-container .app-title h1 {
+    font-size: 120px; 
     font-weight: bold;
     color: #4299e1;
     text-align: center;
+    margin: 0;
 }
 
 .buttons {
