@@ -1,3 +1,9 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 .login-container {
     background-color: #2d3748;
     width: 400px;
@@ -12,6 +18,11 @@
     gap: 5px; 
 }
 
+.card {
+    background-color: #2d3748;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
 
 .back-button {
     position: absolute;
@@ -59,8 +70,24 @@
     text-align: center;
 }
 
+.form-control {
+    background-color: #1a202c;
+    color: #a0aec0;
+    border: 1px solid #4a5568;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 16px;
+}
 
+.form-control:focus {
+    border-color: #3182ce;
+    box-shadow: none;
+}
 
+.form-control::placeholder {
+    color: #a0aec0 !important; /* Màu placeholder */
+    opacity: 1;
+}
 
 .input-field {
     width: 100%;
@@ -104,7 +131,7 @@
 .forgot-password {
     font-size: 14px;
     color: #4299e1;
-    align-self: flex-end;
+align-self: flex-end;
     margin-top: -20px;
 }
 
@@ -123,7 +150,18 @@
     font-size: 18px;
     font-weight: bold;
     transition: background-color 0.3s;
+    transition: background-color 0;
     margin-bottom: 5px; 
+}
+
+.btn-primary {
+    background-color: #3182ce;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #2b6cb0;
 }
 
 .login-button:hover {
@@ -160,10 +198,102 @@
     margin-bottom: 0;
 }
 
+.text-primary {
+    color: #4299e1 !important;
+}
+
+.text-danger {
+    font-size: 12px;
+}
+
 .password-container .error-message {
     position: static;
     margin-top: 2px; 
     min-height: 14px; 
+    align-self: flex-end;
+    margin-top: -20px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    margin-top: auto;
+    align-self: stretch;
+    background-color: #3182ce;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    transition: background-color 0;
+    margin-bottom: 5px; 
+}
+
+.btn-primary {
+    background-color: #3182ce;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #2b6cb0;
+}
+
+.login-button:hover {
+    background-color: #2b6cb0;
+}
+
+.form-actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    padding-bottom: 5px; 
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.input-group.password-container {
+  margin-bottom: 10px;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    min-height: 18px; 
+    margin-top: 5px;
+    padding-left: 5px;
+    margin-bottom: 0;
+}
+
+.text-primary {
+    color: #4299e1 !important;
+}
+
+.text-danger {
+    font-size: 12px;
+}
+
+.password-container .error-message {
+    position: static;
+    margin-top: 2px; 
+    min-height: 14px; 
+}
+
+::placeholder {
+    color: #a0aec0; /* Màu placeholder giống trang Signup */
+    opacity: 1;
 }
 
 

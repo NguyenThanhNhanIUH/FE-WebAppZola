@@ -57,79 +57,108 @@ export default function Signup() {
   };
 
   return (
-    <div className="signup-container">
-      <a href="/" className="back-button">
-        <i className="fas fa-arrow-left"></i>
-      </a>
+    <div
+      className="vh-100 vw-100 d-flex justify-content-center align-items-center"
+      style={{ backgroundColor: "#2d3748", margin: "0", overflow: "hidden" }}
+    >
+      <div
+        className="signup-container"
+        style={{
+          position: "relative",
+          height: "auto",
+          marginTop: "30px",
+        }}
+      >
+        <a
+          href="/"
+          className="back-button"
+          style={{
+            position: "absolute",
+            top: "10px",
+            left: "10px",
+            color: "white",
+            textDecoration: "none",
+            fontSize: "20px",
+          }}
+        >
+          <i className="fas fa-arrow-left"></i>
+        </a>
 
-    <div className="app-title">
-      <h1>Zola</h1>
-    </div>
-
-      <form className="signup-form" onSubmit={handleSubmit}>
-        <p className="form-title">Vui lòng nhập thông tin để tạo tài khoản</p>
-
-        <div className="input-wrapper">
-          <input
-            type="text"
-            placeholder="Họ và tên"
-            className="input-field"
-            value={formData.name}
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                name: capitalizeName(e.target.value),
-              })
-            }
-            onBlur={validate}
-          />
-          <div className="error-message">{errors.name || "\u00A0"}</div>
+        <div className="app-title">
+          <h1 style={{ fontSize: "80px", marginTop: "50px", marginBottom: "10px" }}>Zola</h1>
         </div>
 
-        <div className="input-wrapper">
-          <input
-            type="tel"
-            placeholder="Số điện thoại"
-            className="input-field"
-            value={formData.phone}
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                phone: e.target.value.replace(/\D/g, ""),
-              })
-            }
-            onBlur={validate}
-          />
-          <div className="error-message">{errors.phone || "\u00A0"}</div>
-        </div>
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <p className="form-title" style={{ marginTop: "40px" }}>
+            Vui lòng nhập thông tin để tạo tài khoản
+          </p>
 
-        <div className="input-wrapper">
-          <div className="password-container">
+          <div className="input-wrapper" style={{ marginTop: "2px" }}>
             <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Tạo mật khẩu"
+              type="text"
+              placeholder="Họ và tên"
               className="input-field"
-              value={formData.password}
+              value={formData.name}
               onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
+                setFormData({
+                  ...formData,
+                  name: capitalizeName(e.target.value),
+                })
               }
               onBlur={validate}
             />
-            <button
-              type="button"
-              className="show-password"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "Ẩn" : "Hiện"}
-            </button>
+            <div className="error-message">{errors.name || "\u00A0"}</div>
           </div>
-          <div className="error-message">{errors.password || "\u00A0"}</div>
-        </div>
 
-        <button type="submit" className="signup-button">
-          Tạo tài khoản
-        </button>
-      </form>
+          <div className="input-wrapper" style={{ marginTop: "2px" }}>
+            <input
+              type="tel"
+              placeholder="Số điện thoại"
+              className="input-field"
+              value={formData.phone}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  phone: e.target.value.replace(/\D/g, ""),
+                })
+              }
+              onBlur={validate}
+            />
+            <div className="error-message">{errors.phone || "\u00A0"}</div>
+          </div>
+
+          <div className="input-wrapper" style={{ marginTop: "2px" }}>
+            <div className="password-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Tạo mật khẩu"
+                className="input-field"
+                value={formData.password}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
+                onBlur={validate}
+              />
+              <button
+                type="button"
+                className="show-password"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Ẩn" : "Hiện"}
+              </button>
+            </div>
+            <div className="error-message">{errors.password || "\u00A0"}</div>
+          </div>
+
+          <button
+            type="submit"
+            className="signup-button"
+            style={{ fontSize: "20px", padding: "12px" }}
+          >
+            Tạo tài khoản
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

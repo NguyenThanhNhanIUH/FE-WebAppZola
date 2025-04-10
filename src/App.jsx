@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 
 function App() {
   const [showSplash, setShowSplash] = useState(false);
-  const [loading, setLoading] = useState(true); // đảm bảo chỉ render route sau khi kiểm tra splash
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const splashShown = localStorage.getItem("splash-shown");
@@ -18,9 +18,9 @@ function App() {
         setShowSplash(false);
         localStorage.setItem("splash-shown", "true");
         setLoading(false);
-      }, 2000); // thời gian splash
+      }, 2000); 
     } else {
-      setLoading(false); // không cần splash nữa, load thẳng app
+      setLoading(false); 
     }
   }, []);
 
