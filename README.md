@@ -13,11 +13,12 @@
 2. Cài đặt các dependency:
    ```bash
    npm install
+   npm install react-scripts --save
    ```
 
 3. Chạy ứng dụng:
    ```bash
-   npm run dev
+   npm start
    ```
 
 4. Mở trình duyệt và truy cập:
