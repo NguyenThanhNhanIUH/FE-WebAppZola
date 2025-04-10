@@ -1,4 +1,4 @@
-# WebAppChat
+# FE-WebAppZola
 
 Ứng dụng chat demo sử dụng ReactJS.
 
