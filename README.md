@@ -6,8 +6,8 @@
 
 1. Clone repository:
    ```bash
-   git clone https://github.com/NguyenThanhNhanIUH/WebAppChat.git
-   cd WebAppChat
+   git clone https://github.com/NguyenThanhNhanIUH/FE-WebAppZola.git
+   cd FE-WebAppZola
    ```
 
 2. Cài đặt các dependency:
