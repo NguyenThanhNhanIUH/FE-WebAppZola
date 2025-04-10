@@ -36,31 +36,41 @@ button {
 
 
 #splash-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #3182ce; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; 
-    animation: fadeOut 1s ease-in-out forwards;
-    animation-delay: 1s; /* Hiển thị splash screen trong 1 giây */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #3182ce;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  animation: fadeOut 1s ease-in-out forwards;
+  animation-delay: 1.5s; /* Hiển thị splash trong 1.5s */
 }
 
 #splash-screen h1 {
-    font-size: 100px;
-    font-weight: bold; 
-    color: white; 
-    font-weight: bold;
+  font-size: 100px;
+  font-weight: bold;
+  color: white;
 }
 
-/* Hiệu ứng fade-out */
+/* Tối ưu hiệu ứng mượt hơn */
 @keyframes fadeOut {
-    to {
-        opacity: 0;
-        visibility: hidden;
-    }
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  99% {
+    opacity: 0;
+    transform: scale(0.98);
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.98);
+    visibility: hidden;
+  }
 }
