@@ -3,6 +3,8 @@ import "../styles/global.css";
 import "../styles/signup.css";
 import { useNavigate } from "react-router-dom";
 
+// import axios from "axios"; //BE
+
 export default function Signup() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -46,7 +48,7 @@ export default function Signup() {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
+  //Local Storage test
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;
@@ -55,6 +57,27 @@ export default function Signup() {
     alert("Đăng ký thành công!");
     navigate("/login");
   };
+
+  //BE test
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!validate()) return;
+  
+  //   try {
+  //     // 🆕 Gửi dữ liệu đăng ký tới API
+  //     const response = await axios.post("http://localhost:5000/api/auth/register", formData);
+  //     alert("Đăng ký thành công!");
+  //     navigate("/login");
+  //   } catch (error) {
+  //     // 🆕 Xử lý lỗi nếu đăng ký thất bại
+  //     if (error.response && error.response.data && error.response.data.message) {
+  //       alert("Đăng ký thất bại: " + error.response.data.message);
+  //     } else {
+  //       alert("Lỗi kết nối tới server.");
+  //     }
+  //   }
+  // };
+  
 
   return (
     <div

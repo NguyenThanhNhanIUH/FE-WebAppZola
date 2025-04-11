@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
+// import axios from "axios"; //BE
+
 
 const Login = () => {
   const [phone, setPhone] = useState("");
@@ -18,7 +20,7 @@ const Login = () => {
   const handlePhoneChange = (e) => {
     setPhone(e.target.value.replace(/\D/g, ""));
   };
-
+  //Test local storage
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -51,6 +53,49 @@ const Login = () => {
       navigate("/home");
     }
   };
+  //Test BE
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  
+  //   let valid = true;
+  
+  //   if (phone.trim() === "") {
+  //     setPhoneError("Số điện thoại không được để trống.");
+  //     valid = false;
+  //   } else {
+  //     setPhoneError("");
+  //   }
+  
+  //   if (password.trim() === "") {
+  //     setPasswordError("Mật khẩu không được để trống.");
+  //     valid = false;
+  //   } else {
+  //     setPasswordError("");
+  //   }
+  
+  //   if (!valid) return;
+  
+  //   try {
+  //     const response = await axios.get(`http://localhost:3000/users`, {
+  //       params: {
+  //         phone: phone.trim(),
+  //         password: password.trim()
+  //       }
+  //     });
+  
+  //     if (response.data.length > 0) {
+  //       alert("Đăng nhập thành công!");
+  //       navigate("/home");
+  //     } else {
+  //       setPhoneError("Số điện thoại hoặc mật khẩu không đúng.");
+  //       setPasswordError("");
+  //     }
+  //   } catch (error) {
+  //     console.error("Lỗi khi đăng nhập:", error);
+  //     alert("Đã xảy ra lỗi khi đăng nhập. Vui lòng thử lại.");
+  //   }
+  // };
+  
 
   return (
     <div className="vh-100 vw-100 d-flex justify-content-center align-items-center" style={{ backgroundColor: "#2d3748", margin: "0", overflow: "hidden" }}>
