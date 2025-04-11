@@ -1,153 +1,78 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/login.css";
-// import axios from "axios"; //BE
-
 
 const Login = () => {
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState(""); // Thay phone thành email
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState(""); // Thay phoneError thành emailError
   const [passwordError, setPasswordError] = useState("");
-
   const navigate = useNavigate();
 
   const handleTogglePassword = () => {
     setShowPassword((prev) => !prev);
   };
 
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value.replace(/\D/g, ""));
-  };
-  //Test local storage
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const userData = JSON.parse(localStorage.getItem("user"));
-
     let valid = true;
 
-    if (phone.trim() === "") {
-      setPhoneError("Số điện thoại không được để trống.");
+    if (email.trim() === "") {
+      setEmailError("Email không được để trống.");
       valid = false;
-    } else if (!userData || userData.phone !== phone.trim()) {
-      setPhoneError("Số điện thoại không khớp.");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailError("Email không hợp lệ.");
       valid = false;
     } else {
-      setPhoneError("");
+      setEmailError("");
     }
 
     if (password.trim() === "") {
       setPasswordError("Mật khẩu không được để trống.");
       valid = false;
-    } else if (!userData || userData.password !== password.trim()) {
-      setPasswordError("Mật khẩu không khớp.");
-      valid = false;
     } else {
       setPasswordError("");
     }
 
-    if (valid) {
+    if (!valid) return;
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/auth/login", {
+        email,
+        password,
+      });
+      localStorage.setItem("token", response.data.token);
       alert("Đăng nhập thành công!");
       navigate("/home");
+    } catch (error) {
+      setEmailError(error.response?.data?.message || "Email hoặc mật khẩu không đúng.");
+      setPasswordError("");
     }
   };
-  //Test BE
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  
-  //   let valid = true;
-  
-  //   if (phone.trim() === "") {
-  //     setPhoneError("Số điện thoại không được để trống.");
-  //     valid = false;
-  //   } else {
-  //     setPhoneError("");
-  //   }
-  
-  //   if (password.trim() === "") {
-  //     setPasswordError("Mật khẩu không được để trống.");
-  //     valid = false;
-  //   } else {
-  //     setPasswordError("");
-  //   }
-  
-  //   if (!valid) return;
-  
-  //   try {
-  //     const response = await axios.get(`http://localhost:3000/users`, {
-  //       params: {
-  //         phone: phone.trim(),
-  //         password: password.trim()
-  //       }
-  //     });
-  
-  //     if (response.data.length > 0) {
-  //       alert("Đăng nhập thành công!");
-  //       navigate("/home");
-  //     } else {
-  //       setPhoneError("Số điện thoại hoặc mật khẩu không đúng.");
-  //       setPasswordError("");
-  //     }
-  //   } catch (error) {
-  //     console.error("Lỗi khi đăng nhập:", error);
-  //     alert("Đã xảy ra lỗi khi đăng nhập. Vui lòng thử lại.");
-  //   }
-  // };
-  
 
   return (
     <div className="vh-100 vw-100 d-flex justify-content-center align-items-center" style={{ backgroundColor: "#2d3748", margin: "0", overflow: "hidden" }}>
-      <div className="card text-center text-white p-5" style={{ 
-        width: "500px", 
-        borderRadius: "20px", 
-        boxShadow: "0 6px 15px rgba(0, 0, 0, 0.4)", 
-        backgroundColor: "#2d3748" 
-      }}>
-        <a
-          href="/"
-          className="btn btn-primary rounded-circle"
-          style={{
-            position: "absolute",
-            top: "10px",
-            left: "10px",
-            width: "40px",
-            height: "40px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+      <div className="card text-center text-white p-5" style={{ width: "500px", borderRadius: "20px", boxShadow: "0 6px 15px rgba(0, 0, 0, 0.4)", backgroundColor: "#2d3748" }}>
+        <a href="/" className="btn btn-primary rounded-circle" style={{ position: "absolute", top: "10px", left: "10px", width: "40px", height: "40px", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <i className="fas fa-arrow-left"></i>
         </a>
         <div className="mb-4">
           <h1 className="fw-bold text-primary" style={{ fontSize: "80px" }}>Zola</h1>
         </div>
         <form onSubmit={handleSubmit}>
-          <p 
-            className="mb-4" 
-            style={{ color: "#a0aec0" }}
-          >
-            Vui lòng nhập số điện thoại và mật khẩu để đăng nhập
-          </p>
+          <p className="mb-4" style={{ color: "#a0aec0" }}>Vui lòng nhập email và mật khẩu để đăng nhập</p>
           <div className="mb-3">
             <input
-              type="text"
-              value={phone}
-              onChange={handlePhoneChange}
-              placeholder="Số điện thoại"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
               className="form-control"
-              style={{
-                backgroundColor: "#1a202c",
-                color: "#a0aec0",
-                border: "1px solid #4a5568",
-                borderRadius: "10px",
-                padding: "15px",
-                fontSize: "16px",
-              }}
+              style={{ backgroundColor: "#1a202c", color: "#a0aec0", border: "1px solid #4a5568", borderRadius: "10px", padding: "15px", fontSize: "16px" }}
             />
-            {phoneError && <div className="text-danger mt-1 text-start">{phoneError}</div>}
+            {emailError && <div className="text-danger mt-1 text-start">{emailError}</div>}
           </div>
           <div className="mb-3 position-relative">
             <input
@@ -156,43 +81,17 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Mật khẩu"
               className="form-control"
-              style={{
-                backgroundColor: "#1a202c",
-                color: "#a0aec0",
-                border: "1px solid #4a5568",
-                borderRadius: "10px",
-                padding: "15px",
-                fontSize: "16px",
-              }}
+              style={{ backgroundColor: "#1a202c", color: "#a0aec0", border: "1px solid #4a5568", borderRadius: "10px", padding: "15px", fontSize: "16px" }}
             />
             <button
               type="button"
               className="btn btn-primary position-absolute"
-              style={{
-                top: "50%",
-                right: "10px",
-                transform: "translateY(-50%)",
-                backgroundColor: "#3182ce",
-                color: "white",
-                border: "none",
-                borderRadius: "5px",
-                padding: "5px 15px",
-                fontSize: "14px",
-                zIndex: 1,
-              }}
+              style={{ top: "50%", right: "10px", transform: "translateY(-50%)", backgroundColor: "#3182ce", color: "white", border: "none", borderRadius: "5px", padding: "5px 15px", fontSize: "14px", zIndex: 1 }}
               onClick={handleTogglePassword}
             >
               {showPassword ? "Ẩn" : "Hiện"}
             </button>
-            <div
-              className="text-danger mt-1 text-start"
-              style={{
-                position: "absolute",
-                top: "100%",
-                left: "0",
-                fontSize: "12px",
-              }}
-            >
+            <div className="text-danger mt-1 text-start" style={{ position: "absolute", top: "100%", left: "0", fontSize: "12px" }}>
               {passwordError}
             </div>
           </div>
@@ -200,28 +99,12 @@ const Login = () => {
             <button
               type="submit"
               className="btn btn-primary"
-              style={{
-                backgroundColor: "#3182ce",
-                color: "white",
-                border: "none",
-                borderRadius: "10px",
-                fontSize: "18px",
-                fontWeight: "bold",
-                padding: "15px",
-                width: "100%",
-              }}
+              style={{ backgroundColor: "#3182ce", color: "white", border: "none", borderRadius: "10px", fontSize: "18px", fontWeight: "bold", padding: "15px", width: "100%" }}
             >
               Đăng nhập
             </button>
-            <a
-              href="#"
-              className="text-primary mt-3"
-              style={{
-                textAlign: "center",
-                fontSize: "14px",
-              }}
-            >
-              Lấy lại mật khẩu
+            <a href="/reset-password" className="text-primary mt-3" style={{ textAlign: "center", fontSize: "14px" }}>
+              Quên mật khẩu?
             </a>
           </div>
         </form>

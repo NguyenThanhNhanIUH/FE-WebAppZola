@@ -4,6 +4,8 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
+import ResetPassword from "./pages/ResetPassword";
+import Profile from "./pages/Profile";
 
 function App() {
   const [showSplash, setShowSplash] = useState(false);
@@ -39,6 +41,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );

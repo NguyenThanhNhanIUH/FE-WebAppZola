@@ -296,5 +296,8 @@ align-self: flex-end;
     opacity: 1;
 }
 
-
+.input-field:focus {
+    border-color: #3182ce;
+    box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+}
 
